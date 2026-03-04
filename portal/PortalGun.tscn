@@ -14,7 +14,6 @@ orange_portal_scene = ExtResource("3_2epnt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=646509992]
 texture_filter = 1
-position = Vector2(0, -2.3841858e-07)
 scale = Vector2(0.043701176, 0.043701176)
 texture = ExtResource("4_twq0i")
 

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://ca7loxob7dkx3"]
+
+[ext_resource type="Script" uid="uid://dv1rrs671nhrt" path="res://enemies/striker_bullet_hit.gd" id="1_ncxda"]
+[ext_resource type="Texture2D" uid="uid://7ilemvt8pxpo" path="res://asssets/enemies/Warped shooting fx files/Pixelart/hits/Hits-2/frames/hits-2-1.png" id="1_rnod3"]
+[ext_resource type="Texture2D" uid="uid://drm1qa8voedgn" path="res://asssets/enemies/Warped shooting fx files/Pixelart/hits/Hits-2/frames/hits-2-2.png" id="2_ksuih"]
+[ext_resource type="Texture2D" uid="uid://cvnxpvefh843d" path="res://asssets/enemies/Warped shooting fx files/Pixelart/hits/Hits-2/frames/hits-2-3.png" id="3_oio5t"]
+[ext_resource type="Texture2D" uid="uid://doydd620mpfjh" path="res://asssets/enemies/Warped shooting fx files/Pixelart/hits/Hits-2/frames/hits-2-4.png" id="4_62ylk"]
+[ext_resource type="Texture2D" uid="uid://bra30ah0j1ln5" path="res://asssets/enemies/Warped shooting fx files/Pixelart/hits/Hits-2/frames/hits-2-5.png" id="5_yb1k7"]
+[ext_resource type="Texture2D" uid="uid://b3nhui5psm3bb" path="res://asssets/enemies/Warped shooting fx files/Pixelart/hits/Hits-2/frames/hits-2-6.png" id="6_hfd06"]
+[ext_resource type="Texture2D" uid="uid://cea76vf3xdfci" path="res://asssets/enemies/Warped shooting fx files/Pixelart/hits/Hits-2/frames/hits-2-7.png" id="7_15603"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_codj0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rnod3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ksuih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oio5t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_62ylk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yb1k7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hfd06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_15603")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="StrikerBulletHit" type="Node2D" unique_id=1560588361]
+script = ExtResource("1_ncxda")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=586929874]
+sprite_frames = SubResource("SpriteFrames_codj0")
+frame = 6
+frame_progress = 1.0

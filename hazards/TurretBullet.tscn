@@ -26,8 +26,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nl44v"]
-size = Vector2(24.999998, 13.333333)
+[sub_resource type="CircleShape2D" id="CircleShape2D_nl44v"]
 
 [node name="TurretBullet" type="CharacterBody2D" unique_id=1785840412]
 scale = Vector2(0.6, 0.6)
@@ -43,4 +42,4 @@ frame_progress = 0.4094652
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=208195926]
 position = Vector2(16.666666, 1.6666666)
-shape = SubResource("RectangleShape2D_nl44v")
+shape = SubResource("CircleShape2D_nl44v")

@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://w1ne334md8an"]
+
+[ext_resource type="Texture2D" uid="uid://dpbfumj6jstt1" path="res://asssets/enemies/Warped shooting fx files/Pixelart/spark/frames/spark-preview1.png" id="1_ojsaj"]
+[ext_resource type="Texture2D" uid="uid://ciu58ed26bqht" path="res://asssets/enemies/Warped shooting fx files/Pixelart/spark/frames/spark-preview2.png" id="2_y5rjw"]
+[ext_resource type="Texture2D" uid="uid://e80irxs5c4vi" path="res://asssets/enemies/Warped shooting fx files/Pixelart/spark/frames/spark-preview3.png" id="3_m64h4"]
+[ext_resource type="Texture2D" uid="uid://deyp1kjsbccbe" path="res://asssets/enemies/Warped shooting fx files/Pixelart/spark/frames/spark-preview4.png" id="4_vcoqg"]
+[ext_resource type="Texture2D" uid="uid://bs4cucc7ew8u4" path="res://asssets/enemies/Warped shooting fx files/Pixelart/spark/frames/spark-preview5.png" id="5_iwru6"]
+[ext_resource type="Script" uid="uid://c4ifhiepfml3x" path="res://hazards/striker_bullet.gd" id="6_script"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_27yah"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ojsaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_y5rjw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m64h4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vcoqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_iwru6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y5rjw"]
+radius = 1.6666667
+
+[node name="StrikerBullet" type="CharacterBody2D" unique_id=516904647]
+texture_filter = 1
+scale = Vector2(1.2, 1.2)
+collision_layer = 8
+collision_mask = 27
+script = ExtResource("6_script")
+allow_friendly_fire = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2020342329]
+texture_filter = 1
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_27yah")
+frame = 3
+frame_progress = 0.8264056
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1136408492]
+position = Vector2(3.3333333, 0)
+shape = SubResource("CircleShape2D_y5rjw")

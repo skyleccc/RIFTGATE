@@ -10,6 +10,7 @@ extends Node2D
 @export var blue_portal_scene: PackedScene
 @export var orange_portal_scene: PackedScene
 
+@onready var sprite: Sprite2D = $Sprite2D
 @onready var sound_player: AudioStreamPlayer = $AudioStreamPlayer
 
 # Sound list
@@ -36,7 +37,7 @@ var _aim_hit_normal: Vector2 = Vector2.ZERO
 var _aim_valid := false
 
 func _process(_delta: float) -> void:
-	look_at(get_global_mouse_position())
+	_update_gun_direction()
 
 	# Update aim data for the laser sight
 	_update_aim()
@@ -52,6 +53,16 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ResetPortals"):
 		_clear_portals()
 		_play_sound(RESET_PORTAL_SOUND)
+
+func _update_gun_direction() -> void:
+	var mouse_pos: Vector2 = get_global_mouse_position()
+	look_at(mouse_pos)
+	rotation_degrees = wrap(rotation_degrees, 0, 360) # Keep rotation between -180 and 180 for easier debugging
+	if rotation_degrees > 90 and rotation_degrees < 270:
+		scale.y = -1.0
+	else:
+		scale.y = 1.0
+
 
 func _update_aim() -> void:
 	var result := _raycast_to_surface()

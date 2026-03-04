@@ -1,11 +1,18 @@
 extends Node2D
 
+@onready var bgm_player: AudioStreamPlayer = $BackgroundMusic
+@onready var debug_hud: CanvasLayer = $DebugHUD
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass
+
+func _process(delta: float) -> void:
+	check_for_debug_input()
+
+func check_for_debug_input() -> void:
+	if Input.is_action_just_pressed("ShowDebugHUD"):
+		debug_hud.visible = not debug_hud.visible
+		print("DebugHUD is enabled.") if debug_hud.visible else print("DebugHUD is disabled.")
+	
+	
+		

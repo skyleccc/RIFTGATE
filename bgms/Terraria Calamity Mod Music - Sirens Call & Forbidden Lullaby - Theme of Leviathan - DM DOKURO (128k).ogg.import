@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ck71jxxmpmcv6"
+path="res://.godot/imported/Terraria Calamity Mod Music - Sirens Call & Forbidden Lullaby - Theme of Leviathan - DM DOKURO (128k).ogg-41e0136dd69682f4287d5c1e8eb0bc9a.oggvorbisstr"
+
+[deps]
+
+source_file="res://bgms/Terraria Calamity Mod Music - Sirens Call & Forbidden Lullaby - Theme of Leviathan - DM DOKURO (128k).ogg"
+dest_files=["res://.godot/imported/Terraria Calamity Mod Music - Sirens Call & Forbidden Lullaby - Theme of Leviathan - DM DOKURO (128k).ogg-41e0136dd69682f4287d5c1e8eb0bc9a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
