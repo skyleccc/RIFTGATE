@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dbh2abpt3lm42"]
 
 [ext_resource type="Texture2D" uid="uid://jwtwxl000l4d" path="res://asssets/enemies/NightBorne/NightBorne.png" id="1_3muhx"]
-[ext_resource type="Script" uid="uid://xhchye204d13" path="res://hazards/night_borne_enemy.gd" id="1_8d1o4"]
+[ext_resource type="Script" uid="uid://xhchye204d13" path="res://enemies/night_borne_enemy.gd" id="1_8d1o4"]
+[ext_resource type="AudioStream" uid="uid://bxh5b3nu0uc8" path="res://enemies/sounds/nightborne_ambient.wav" id="3_bdesu"]
 
 [sub_resource type="Animation" id="Animation_ccjs4"]
 resource_name = "Death"
@@ -186,3 +187,13 @@ collision_layer = 0
 position = Vector2(1.5384616, -4.6153846)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ccjs4")
+
+[node name="Sounds" type="Node2D" parent="." unique_id=577014038]
+
+[node name="AmbientSound" type="AudioStreamPlayer2D" parent="Sounds" unique_id=210139804]
+stream = ExtResource("3_bdesu")
+autoplay = true
+
+[node name="VoiceSound" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1393173136]
+
+[node name="SwingSound" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1250205492]

@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cya4bs0c6m7wh"
-path="res://.godot/imported/PORTAL RED-Sheet.aseprite-1afa54c6718e2357d1cf6d253b6618f9.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://asssets/portals/PORTAL RED-Sheet.aseprite"
-dest_files=["res://.godot/imported/PORTAL RED-Sheet.aseprite-1afa54c6718e2357d1cf6d253b6618f9.ctex"]
 
 [params]
 

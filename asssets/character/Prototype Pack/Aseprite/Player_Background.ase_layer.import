@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin.spriteframes-split-layer"
 type="SpriteFrames"
 uid="uid://dncu0lg857nlv"
-path="res://.godot/imported/Player_Background.ase_layer-41cb851634da6a21fc07f90ed5707ef4.res"
+valid=false
 
 [deps]
 
 source_file="res://asssets/character/Prototype Pack/Aseprite/Player_Background.ase_layer"
-dest_files=["res://.godot/imported/Player_Background.ase_layer-41cb851634da6a21fc07f90ed5707ef4.res"]
 
 [params]
 

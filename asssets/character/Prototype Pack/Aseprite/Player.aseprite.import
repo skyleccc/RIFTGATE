@@ -3,12 +3,11 @@
 importer="Aseprite Sprite2D Import"
 type="PackedScene"
 uid="uid://baj5tsachgvuo"
-path="res://.godot/imported/Player.aseprite-4d93a2bf3d45d3e0cabb50cffa2e0e3e.scn"
+valid=false
 
 [deps]
 
 source_file="res://asssets/character/Prototype Pack/Aseprite/Player.aseprite"
-dest_files=["res://.godot/imported/Player.aseprite-4d93a2bf3d45d3e0cabb50cffa2e0e3e.scn"]
 
 [params]
 

@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin.spriteframes-split-layer"
 type="SpriteFrames"
 uid="uid://bx07c42c3rnex"
-path="res://.godot/imported/Player_NormalMap.ase_layer-f680113a2b1aa419a16a990c7c2372d0.res"
+valid=false
 
 [deps]
 
 source_file="res://asssets/character/Prototype Pack/Aseprite/Player_NormalMap.ase_layer"
-dest_files=["res://.godot/imported/Player_NormalMap.ase_layer-f680113a2b1aa419a16a990c7c2372d0.res"]
 
 [params]
 
