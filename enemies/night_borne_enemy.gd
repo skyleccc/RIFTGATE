@@ -2,12 +2,9 @@ extends Enemy
 
 enum State { IDLE, ROAM, CHASE, ATTACK, HURT, DEATH }
 
-# ── Stats ──────────────────────────────────────────────────────────────────────
-@export_group("Stats")
+# ── Attack Stats ───────────────────────────────────────────────────────────────
+@export_group("Attack")
 @export var attack_damage: int = 20
-
-# ── Timers ─────────────────────────────────────────────────────────────────────
-@export_group("Timers")
 @export var attack_cooldown: float = 1.5
 
 # ── Attack Window ──────────────────────────────────────────────────────────────
@@ -31,13 +28,24 @@ var _has_dealt_damage: bool = false
 var _hurt_timer: float = 0.0
 var _death_timer: float = 0.0
 
+var played_swing_sound = false
+
 # ── Node References ────────────────────────────────────────────────────────────
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
-@onready var deaggro_area: Area2D = $DeaggroArea
-@onready var hit_box: Area2D = $HitBox
+@onready var collision_box: CollisionShape2D = $EnvCollision
 @onready var hurt_box: Area2D = $HurtBox
+@onready var hit_box: Area2D = $HitBox
+@onready var deaggro_area: Area2D = $DeaggroArea
+@onready var ambient_sound: AudioStreamPlayer2D = $Sounds/AmbientSound
+@onready var vo_sound: AudioStreamPlayer2D = $Sounds/VoiceSound
+@onready var swing_sound: AudioStreamPlayer2D = $Sounds/SwingSound
 
+# Sound list
+const SWING_SOUND: AudioStream = preload("res://enemies/sounds/nightborne_swing.wav")
+const HURT_SOUND: AudioStream = preload("res://enemies/sounds/nightborne_hurt.wav")
+const DEATH_SOUND: AudioStream = preload("res://enemies/sounds/nightborne_death.wav")
+const AMBIENT_SOUND: AudioStream = preload("res://enemies/sounds/nightborne_ambient.wav")
 
 # ═══════════════════════════════════════════════════════════════════════════════
 #  Lifecycle
@@ -52,6 +60,7 @@ func _ready() -> void:
 
 	hit_box.monitorable = false
 	_set_hitbox_active(false)
+	_set_audio()
 
 	_enter_state(State.IDLE)
 	print("NightBorne spawned — HP: ", current_hp, " / ", max_hp)
@@ -124,6 +133,7 @@ func _process_chase(delta: float) -> void:
 		return
 
 	if not _player_in_deaggro or not _has_los:
+		print(_deaggro_timer)
 		_deaggro_timer -= delta
 		if _deaggro_timer <= 0.0:
 			target = null
@@ -156,11 +166,15 @@ func _process_attack(delta: float) -> void:
 	if in_window and not _has_dealt_damage:
 		_set_hitbox_active(true)
 		_deal_attack_damage()
+		if not played_swing_sound:
+			played_swing_sound = true
+			swing_sound.play(0.60)
 	elif _attack_elapsed > damage_window_end:
 		_set_hitbox_active(false)
 
 	if _attack_elapsed >= SLASH_DURATION:
 		_finish_attack()
+		played_swing_sound = false
 
 
 func _process_hurt(delta: float) -> void:
@@ -185,7 +199,6 @@ func _process_death(delta: float) -> void:
 # ═══════════════════════════════════════════════════════════════════════════════
 
 func _enter_state(new_state: State) -> void:
-	# Notify before state changes
 	if new_state == State.CHASE and state != State.CHASE and _has_los:
 		_notify_aggro()
 	if new_state != State.CHASE and state == State.CHASE:
@@ -213,12 +226,18 @@ func _enter_state(new_state: State) -> void:
 		State.HURT:
 			_hurt_timer = HURT_DURATION
 			_set_hitbox_active(false)
+			vo_sound.stream = HURT_SOUND
+			vo_sound.play(0.25)
 			anim_player.play("Hurt")
 		State.DEATH:
 			_death_timer = DEATH_DURATION
 			_set_hitbox_active(false)
 			collision_layer = 0
 			collision_mask = 0
+			ambient_sound.stop()
+			swing_sound.stop()
+			vo_sound.stream = DEATH_SOUND
+			vo_sound.play()
 			anim_player.play("Death")
 
 
@@ -291,6 +310,22 @@ func _on_deaggro_body_exited(body: Node2D) -> void:
 		_player_in_deaggro = false
 		_deaggro_timer = deaggro_time
 
+# ═══════════════════════════════════════════════════════════════════════════════
+#  Sound Handling - VoiceSound, AmbientSound, SwingSound
+# ═══════════════════════════════════════════════════════════════════════════════
+
+func _set_audio() -> void:
+	ambient_sound.stream = AMBIENT_SOUND
+	swing_sound.stream = SWING_SOUND
+	vo_sound.stream = null  # Set to voice sound if available
+
+	# Autoplay ambient sound
+	ambient_sound.finished.connect(_on_ambient_finished)
+	ambient_sound.play()
+	
+func _on_ambient_finished() -> void:
+	if state != State.DEATH:
+		ambient_sound.play()
 
 # ═══════════════════════════════════════════════════════════════════════════════
 #  Helpers
@@ -301,8 +336,6 @@ func _update_facing(dir: float) -> void:
 		return
 	facing = dir
 	sprite.flip_h = facing < 0.0
-	hit_box.scale.x = absf(hit_box.scale.x) * signf(facing)
-
 
 func _set_hitbox_active(active: bool) -> void:
 	hit_box.monitoring = active

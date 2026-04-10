@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dbh2abpt3lm42"]
 
 [ext_resource type="Texture2D" uid="uid://jwtwxl000l4d" path="res://asssets/enemies/NightBorne/NightBorne.png" id="1_3muhx"]
-[ext_resource type="Script" uid="uid://xhchye204d13" path="res://hazards/night_borne_enemy.gd" id="1_8d1o4"]
+[ext_resource type="Script" uid="uid://xhchye204d13" path="res://enemies/night_borne_enemy.gd" id="1_8d1o4"]
+[ext_resource type="AudioStream" uid="uid://bxh5b3nu0uc8" path="res://enemies/sounds/nightborne_ambient.wav" id="3_bdesu"]
 
 [sub_resource type="Animation" id="Animation_ccjs4"]
 resource_name = "Death"
@@ -121,8 +122,10 @@ _data = {
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rcoua"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6i07u"]
+radius = 11.538463
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8d1o4"]
+radius = 7.6923084
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qfrpo"]
 radius = 4.0
@@ -130,18 +133,26 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ubjw1"]
 radius = 24.627403
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bdesu"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ccjs4"]
 radius = 29.0
 height = 204.6154
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_bdesu"]
+
+[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_gkv0u"]
 
 [node name="NightBorneEnemy" type="CharacterBody2D" unique_id=352097399]
 scale = Vector2(1.3, 1.3)
 collision_layer = 16
 collision_mask = 10
 script = ExtResource("1_8d1o4")
+los_range = 150.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=130492141]
 texture_filter = 1
+position = Vector2(4.7683716e-07, 0)
 texture = ExtResource("1_3muhx")
 hframes = 23
 vframes = 5
@@ -153,20 +164,24 @@ libraries/ = SubResource("AnimationLibrary_ccjs4")
 tree_root = SubResource("AnimationNodeStateMachine_rcoua")
 
 [node name="EnvCollision" type="CollisionShape2D" parent="." unique_id=2135954066]
-position = Vector2(3, 7.461538)
+visible = false
+position = Vector2(0, 7.6923075)
 shape = SubResource("CapsuleShape2D_6i07u")
+debug_color = Color(0.4446071, 0.46310955, 0.9731104, 0.7176471)
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=929442136]
+visible = false
 position = Vector2(0, -1.5384617)
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1420595604]
-position = Vector2(3, 9)
+position = Vector2(0, 9.230769)
 shape = SubResource("CapsuleShape2D_8d1o4")
 debug_color = Color(0.6993126, 0.43895534, 0.6004566, 0.41960785)
 
 [node name="HitBox" type="Area2D" parent="." unique_id=1832662278]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1624419779]
@@ -179,10 +194,58 @@ position = Vector2(16.153847, 2.3076925)
 shape = SubResource("CircleShape2D_ubjw1")
 debug_color = Color(0.8358192, 0.36061254, 0.38848218, 0.41960785)
 
+[node name="AggroArea" type="Area2D" parent="." unique_id=2100719135]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea" unique_id=756235186]
+shape = SubResource("CapsuleShape2D_bdesu")
+
 [node name="DeaggroArea" type="Area2D" parent="." unique_id=598088089]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeaggroArea" unique_id=1608381702]
-position = Vector2(1.5384616, -4.6153846)
+position = Vector2(0.7692307, -2.3076925)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ccjs4")
+
+[node name="Raycasts" type="Node2D" parent="." unique_id=487806172]
+
+[node name="LoS_Front" type="RayCast2D" parent="Raycasts" unique_id=526399622]
+target_position = Vector2(200, 0)
+
+[node name="LoS_Back" type="RayCast2D" parent="Raycasts" unique_id=1671426076]
+target_position = Vector2(-65, 0)
+
+[node name="FloorRay" type="RayCast2D" parent="Raycasts" unique_id=840282791]
+target_position = Vector2(20.769234, 30.769234)
+
+[node name="WallRay" type="RayCast2D" parent="Raycasts" unique_id=2118340584]
+target_position = Vector2(38.46154, 0)
+
+[node name="Sounds" type="Node2D" parent="." unique_id=577014038]
+visible = false
+
+[node name="AmbientSound" type="AudioStreamPlayer2D" parent="Sounds" unique_id=210139804]
+stream = ExtResource("3_bdesu")
+autoplay = true
+max_distance = 425.0
+attenuation = 2.1000001
+
+[node name="VoiceSound" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1393173136]
+stream = SubResource("AudioStreamPolyphonic_bdesu")
+max_distance = 425.0
+attenuation = 0.50000006
+
+[node name="SwingSound" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1250205492]
+stream = SubResource("AudioStreamWAV_gkv0u")
+max_distance = 425.0
+attenuation = 0.5
+
+[node name="Timers" type="Node2D" parent="." unique_id=324718918]
+
+[node name="HurtTimer" type="Timer" parent="Timers" unique_id=1896678468]
+
+[node name="AttackTimer" type="Timer" parent="Timers" unique_id=123850526]
+
+[node name="DeathTimer" type="Timer" parent="Timers" unique_id=1687382294]

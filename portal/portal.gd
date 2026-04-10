@@ -11,7 +11,7 @@ extends Area2D
 
 @export_group("Audio")
 ## Max distance (px) for enter/exit teleport sounds
-@export var sfx_max_distance: float = 2000.0
+@export var sfx_max_distance: float = 1000
 ## Max distance (px) for the ambient hum loop
 @export var ambient_max_distance: float = 500.0
 ## Volume (dB) for the ambient hum loop

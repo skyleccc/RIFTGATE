@@ -81,7 +81,7 @@ _data = {
 size = Vector2(12, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j13iv"]
-size = Vector2(4, 48)
+size = Vector2(8, 48)
 
 [node name="Laser" type="Node2D" unique_id=2145471457]
 script = ExtResource("1_j13iv")
