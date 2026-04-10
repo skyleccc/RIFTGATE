@@ -3,3 +3,7 @@
     - Leads to broken aggro_vo
 
 2. Since audios for aggro is broken and still thinking of queue system, death vo is delayed.
+
+3. Slow down when damaged on spikes or any no knockback hazards
+
+4. 

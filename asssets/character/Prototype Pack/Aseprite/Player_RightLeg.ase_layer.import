@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin.spriteframes-split-layer"
 type="SpriteFrames"
 uid="uid://dwhjpc1khjvsx"
-valid=false
+path="res://.godot/imported/Player_RightLeg.ase_layer-b12cde0c9aa8569029c956cd0019c791.res"
 
 [deps]
 
 source_file="res://asssets/character/Prototype Pack/Aseprite/Player_RightLeg.ase_layer"
+dest_files=["res://.godot/imported/Player_RightLeg.ase_layer-b12cde0c9aa8569029c956cd0019c791.res"]
 
 [params]
 

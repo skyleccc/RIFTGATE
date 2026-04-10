@@ -16,6 +16,7 @@ extends CharacterBody2D
 
 @export_group("Line of Sight")
 @export var los_range: float = 200.0
+@export var los_rear: float = 60.0
 
 @export_group("Edge Detection")
 @export var edge_ray_horizontal: float = 20.0

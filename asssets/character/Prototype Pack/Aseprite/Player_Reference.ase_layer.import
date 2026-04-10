@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin.spriteframes-split-layer"
 type="SpriteFrames"
 uid="uid://bxbo184ljf2yn"
-valid=false
+path="res://.godot/imported/Player_Reference.ase_layer-7c2c44daf17cb7ba0c30e296d6b378ad.res"
 
 [deps]
 
 source_file="res://asssets/character/Prototype Pack/Aseprite/Player_Reference.ase_layer"
+dest_files=["res://.godot/imported/Player_Reference.ase_layer-7c2c44daf17cb7ba0c30e296d6b378ad.res"]
 
 [params]
 

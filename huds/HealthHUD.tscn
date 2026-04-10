@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cq7ehk2qfgixs"]
+
+[node name="HealthHud" type="Control" unique_id=474886476]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Player HP"
+
+[node name="PlayersHpLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Not in match"

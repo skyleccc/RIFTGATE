@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://cd515tbpifyfi" path="res://main.gd" id="1_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://d172y7fl2i3bu" path="res://character/CharacterModel.tscn" id="1_glv2v"]
 [ext_resource type="PackedScene" uid="uid://v3b2v6oq3uqk" path="res://levels/Level1.tscn" id="2_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://bgvv1cewiw6g0" path="res://multiplayer-nakama/Client.tscn" id="3_7u5lb"]
 [ext_resource type="Script" uid="uid://cg5by3dekbmhp" path="res://debugs/debug_hud.gd" id="4_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://cq7ehk2qfgixs" path="res://huds/HealthHUD.tscn" id="4_wn3n2"]
 [ext_resource type="AudioStream" uid="uid://cwmvbdvsd8vy4" path="res://bgms/Portal-2-OST-Volume-2-Music-of-the-Spheres-KniL-_128k_.ogg" id="6_03owx"]
 [ext_resource type="AudioStream" uid="uid://dxotv7e54h4es" path="res://bgms/Mass-Effect-3-Soundtrack-Leaving-Earth-MassEffect3OST-_128k_.ogg" id="7_wkp8b"]
 [ext_resource type="AudioStream" uid="uid://b17ufl5u3a753" path="res://bgms/Helldivers 2 Main Theme - A Cup Of Liber-Tea - RogetMusic (128k).ogg" id="8_20pc6"]
@@ -13,7 +15,7 @@
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_5vvyt"]
 shuffle = true
-stream_count = 7
+stream_count = 8
 stream_0 = ExtResource("7_wkp8b")
 stream_1 = ExtResource("6_03owx")
 stream_2 = ExtResource("7_wkp8b")
@@ -27,10 +29,22 @@ texture_filter = 1
 script = ExtResource("1_cm0pq")
 
 [node name="Character" parent="." unique_id=1391196329 instance=ExtResource("1_glv2v")]
-position = Vector2(456, 264)
+position = Vector2(-20, 34)
 
 [node name="LevelLayout" parent="." unique_id=795836976 instance=ExtResource("2_uu6xs")]
-position = Vector2(495, 321)
+position = Vector2(60, 78)
+
+[node name="MultiplayerUI" type="CanvasLayer" parent="." unique_id=591334217]
+
+[node name="HealthHUD" parent="MultiplayerUI" unique_id=46030112 instance=ExtResource("4_wn3n2")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 252.0
+offset_bottom = 108.0
+
+[node name="MultiplayerClient" parent="MultiplayerUI" unique_id=355230823 instance=ExtResource("3_7u5lb")]
 
 [node name="DebugHUD" type="CanvasLayer" parent="." unique_id=1608262915]
 script = ExtResource("4_cm0pq")
@@ -38,4 +52,3 @@ script = ExtResource("4_cm0pq")
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1983318440]
 stream = SubResource("AudioStreamPlaylist_5vvyt")
 volume_db = -20.0
-autoplay = true

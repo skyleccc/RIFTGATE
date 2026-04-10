@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin.spriteframes-split-layer"
 type="SpriteFrames"
 uid="uid://bcrwrg4d5ttf4"
-valid=false
+path="res://.godot/imported/Player_RightArm.ase_layer-d94a97117027703febe1773ed9e3f007.res"
 
 [deps]
 
 source_file="res://asssets/character/Prototype Pack/Aseprite/Player_RightArm.ase_layer"
+dest_files=["res://.godot/imported/Player_RightArm.ase_layer-d94a97117027703febe1773ed9e3f007.res"]
 
 [params]
 

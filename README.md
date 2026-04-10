@@ -1,10 +1,27 @@
-# GoDotExercise1
+# Riftgate
 
 A 2D platformer built in **Godot 4.6** featuring a full **Portal gun** mechanic — place linked blue and orange portals on surfaces and fling yourself through them with preserved momentum. *"Speedy thing goes in, speedy thing comes out."*
 
+## Game Showcase
+
+[![Watch the gameplay showcase](https://img.youtube.com/vi/yJme9-4Xrk4/0.jpg)](https://youtu.be/yJme9-4Xrk4)
+
+Game Showcase: https://youtu.be/yJme9-4Xrk4
+
 ---
 
-## Gameplay
+## Activity Checklist
+
+- [x] Week 2: Activity 1 - Gameplay Mechanics
+- [x] Week 2: Activity 2 - Level Design
+- [x] Week 3: Activity 1 - UI/UX & Audio
+- [x] Week 3: Activity 2 - AI & Enemies
+- [] Week 4: Activity 1 - 3D Basics & Optimization (No 3D)
+- [x] Week 4: Activity 2 - Multiplayer (Basic Cloud Server)
+
+---
+
+## Gameplay Controls
 
 - **Move:** `A` / `D`
 - **Jump:** `W` / `Space`
@@ -12,73 +29,9 @@ A 2D platformer built in **Godot 4.6** featuring a full **Portal gun** mechanic 
 - **Blue Portal:** `Left Click`
 - **Orange Portal:** `Right Click`
 - **Reset Portals:** `R`
+- **Remove Debug Menu:** `\``
 
 The player can place two linked portals on any valid wall/floor/ceiling surface. Entering one teleports you out the other, preserving your speed and redirecting it along the exit portal's normal. Air friction is intentionally reduced after a portal fling so momentum carries properly.
-
----
-
-## Project Structure
-
-```
-├── main.gd / Main.tscn            # Root scene
-├── CharacterScript.gd              # Player controller (extends PortalEntity)
-├── CharacterModel.tscn             # Player scene with sprites & animations
-├── project.godot                   # Project configuration & input map
-│
-├── portal/                         # Portal system
-│   ├── portal_entity.gd            # Base class for anything that travels through portals
-│   ├── portal_gun.gd               # Fires raycasts to place portals on surfaces
-│   ├── portal.gd                   # Portal teleportation logic & momentum transfer
-│   ├── PortalBlue.tscn             # Blue portal scene
-│   ├── PortalOrange.tscn           # Orange portal scene
-│   └── PortalGun.tscn              # Portal gun scene
-│
-├── hazards/                        # Enemies & environmental hazards
-│   ├── saw.gd / Saw.tscn           # Spinning saw (moving or stationary)
-│   ├── laser.gd / Laser.tscn       # Continuous-damage laser beam
-│   ├── spike.gd / Spike.tscn       # Timed spike trap (cycles hidden → active)
-│   ├── spike_group.gd              # Groups spikes for sync or staggered activation
-│   ├── turret.gd / Turret.tscn     # Auto-firing turret (shoots portal-compatible bullets)
-│   ├── turret_bullet.gd            # Turret projectile (extends PortalEntity)
-│   ├── turret_bullet_hit.gd        # Turret bullet impact effect
-│   ├── night_borne_enemy.gd        # Melee AI enemy (patrol → chase → slash)
-│   ├── striker_enemy.gd            # Melee + ranged AI enemy with dash attack
-│   ├── striker_bullet.gd           # Striker ranged projectile (extends PortalEntity)
-│   └── striker_bullet_hit.gd       # Striker bullet impact effect
-│
-├── levels/
-│   └── Level1.tscn                 # First level
-│
-├── debugs/
-│   └── debug_hud.gd               # On-screen debug overlay (velocity, portals, aim line)
-│
-├── asssets/                        # Sprites & tilesets
-│   ├── character/                  # Player sprite sheets
-│   ├── enemies/                    # Enemy sprite sheets
-│   ├── guns/                       # Portal gun art
-│   ├── portals/                    # Portal art
-│   └── tilesets/                   # Tileset assets
-│
-└── addons/                         # Editor plugins
-    ├── AsepriteWizard/             # Aseprite import pipeline
-    ├── FastSpriteAnimation/        # Quick sprite animation editor
-    ├── GitGodot/                   # Git integration for Godot
-    ├── github_copilot/             # GitHub Copilot integration
-    ├── godot_doctor/               # Project diagnostics
-    └── nklbdev.aseprite_importers/ # Aseprite format loaders
-```
-
----
-
-## Physics Layers
-
-| Layer | Name    | Purpose                                          |
-|-------|---------|--------------------------------------------------|
-| 1     | Player  | Player character body                            |
-| 2     | Walls   | Static environment collision (portal-placeable)  |
-| 3     | Portals | Portal area detection                            |
-| 4     | Hazards | Damage-dealing areas (saws, spikes, lasers, etc.)|
-| 5     | Enemies | Enemy bodies                                     |
 
 ---
 
@@ -118,21 +71,84 @@ Both turret and striker bullets extend `PortalEntity`, so they can be teleported
 
 ---
 
-## TODO
+## Physics Layers
 
-- [ ] Design levels
-- [ ] UI/UX & Audio
+| Layer | Name    | Purpose                                          |
+|-------|---------|--------------------------------------------------|
+| 1     | Player  | Player character body                            |
+| 2     | Walls   | Static environment collision (portal-placeable)  |
+| 3     | Portals | Portal area detection                            |
+| 4     | Hazards | Damage-dealing areas (saws, spikes, lasers, etc.)|
+| 5     | Enemies | Enemy bodies                                     |
+
+---
+
+## Project Structure
+
+```
+go-dot-exercise-1/
+├── Main.tscn
+├── main.gd
+├── character/
+│   ├── CharacterModel.tscn
+│   └── CharacterScript.gd
+├── levels/
+│   ├── Level1.tscn
+│   └── Level2.tscn
+├── enemies/
+│   ├── enemy_entity.gd
+│   ├── night_borne_enemy.gd
+│   ├── striker_enemy.gd
+│   ├── NightBorneEnemy.tscn
+│   └── StrikerEnemy.tscn
+├── hazards/
+│   ├── laser.gd
+│   ├── saw.gd
+│   ├── spike.gd
+│   ├── spike_group.gd
+│   ├── turret.gd
+│   └── Turret.tscn
+├── portal/
+│   ├── portal_entity.gd
+│   ├── portal_gun.gd
+│   ├── portal.gd
+│   ├── PortalBlue.tscn
+│   ├── PortalOrange.tscn
+│   └── PortalGun.tscn
+├── multiplayer-nakama/
+│   ├── Client.tscn
+│   ├── client.gd
+│   ├── docker-compose.yml
+│   ├── addons/
+│   └── sync/
+│       ├── player_sync.gd
+│       ├── enemy_sync.gd
+│       └── portal_sync.gd
+├── huds/
+│   └── HealthHUD.tscn
+├── debugs/
+│   └── debug_hud.gd
+├── asssets/
+│   ├── character/
+│   ├── enemies/
+│   ├── guns/
+│   ├── portals/
+│   ├── sounds/
+│   └── tilesets/
+├── bgms/
+└── addons/
+```
 
 ---
 
 ## Requirements
 
-- **Godot 4.6** (Forward+ renderer)
-- **Aseprite** (optional, for sprite editing — path configured in project settings)
+- Godot 4.6
+- Docker (for local Nakama server)
 
 ---
 
 ## Running
 
 1. Open the project in Godot 4.6
-2. Press **F5** or click **Play** to run the main scene
+2. Press F5 or click Play
