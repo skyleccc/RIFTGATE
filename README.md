@@ -2,9 +2,10 @@
 
 A 2D platformer built in **Godot 4.6** featuring a full **Portal gun** mechanic — place linked blue and orange portals on surfaces and fling yourself through them with preserved momentum. *"Speedy thing goes in, speedy thing comes out."*
 
+
 ## Game Showcase
 
-[![Watch the gameplay showcase](https://img.youtube.com/vi/yJme9-4Xrk4/0.jpg)](https://youtu.be/yJme9-4Xrk4)
+<iframe width="560" height="315" src="https://youtu.be/yJme9-4Xrk4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Game Showcase: https://youtu.be/yJme9-4Xrk4
 
