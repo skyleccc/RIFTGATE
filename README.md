@@ -1,15 +1,16 @@
-# Riftgate
+# RIFTGATE
 
 A 2D platformer built in **Godot 4.6** featuring a full **Portal gun** mechanic — place linked blue and orange portals on surfaces and fling yourself through them with preserved momentum. *"Speedy thing goes in, speedy thing comes out."*
 
 
-## Game Showcase
+## Game Multiplayer Demo
 
-<iframe width="560" height="315" src="https://youtu.be/yJme9-4Xrk4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Watch the demo](https://github.com/user-attachments/assets/53777696-8986-499c-b230-37274f9eeaea)](https://youtu.be/yJme9-4Xrk4)
 
-Game Showcase: https://youtu.be/yJme9-4Xrk4
+▶ Click the image to play the video
 
 ---
+
 
 ## Activity Checklist
 
@@ -17,7 +18,7 @@ Game Showcase: https://youtu.be/yJme9-4Xrk4
 - [x] Week 2: Activity 2 - Level Design
 - [x] Week 3: Activity 1 - UI/UX & Audio
 - [x] Week 3: Activity 2 - AI & Enemies
-- [] Week 4: Activity 1 - 3D Basics & Optimization (No 3D)
+- [ ] Week 4: Activity 1 - 3D Basics & Optimization (No 3D)
 - [x] Week 4: Activity 2 - Multiplayer (Basic Cloud Server)
 
 ---
@@ -30,9 +31,9 @@ Game Showcase: https://youtu.be/yJme9-4Xrk4
 - **Blue Portal:** `Left Click`
 - **Orange Portal:** `Right Click`
 - **Reset Portals:** `R`
-- **Remove Debug Menu:** `\``
+- **Remove Debug Menu:** `` ` ``
 
-The player can place two linked portals on any valid wall/floor/ceiling surface. Entering one teleports you out the other, preserving your speed and redirecting it along the exit portal's normal. Air friction is intentionally reduced after a portal fling so momentum carries properly.
+The player can place two linked portals on any valid wall/floor/ceiling surface. Entering one teleports you out of the other, preserving your speed and redirecting it along the exit portal's normal. Air friction is intentionally reduced after a portal fling so momentum carries properly.
 
 ---
 
@@ -40,7 +41,7 @@ The player can place two linked portals on any valid wall/floor/ceiling surface.
 
 ### Portal Mechanic
 
-- **PortalEntity** — base class for any body that can travel through portals. Implements custom `move_and_collide` loop that detects portal surfaces and defers to the portal's teleport logic. Tracks a `launched_by_portal` flag to reduce air friction for 1.5 seconds after a fling.
+- **PortalEntity** — base class for any body that can travel through portals. Implements a custom `move_and_collide` loop that detects portal surfaces and defers to the portal's teleport logic. Tracks a `launched_by_portal` flag to reduce air friction for 1.5 seconds after a fling.
 - **Portal Gun** — raycasts from the player to the mouse cursor. On click, places a blue or orange portal on the hit surface (Walls layer). Both portals are automatically linked when both exist.
 - **Portal** — when a `PortalEntity` overlaps, it teleports it to the linked portal. Exit velocity equals entry speed directed along the exit portal's outward normal. A brief cooldown prevents instant re-teleportation.
 
